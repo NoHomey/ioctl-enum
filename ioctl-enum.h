@@ -1,8 +1,6 @@
 #include <fstream>
 #include <string>
 
-// IOCTL_ENUM_JS, IOCTL_ENUM_TS, IOCTL_ENUM, IOCTL_ENUM_IOCTL, IOCTL_ENUM_EXPORT
-
 #define _IOCTL_ENUM_DO_NOP() do { } while(0)
 
 #ifdef IOCTL_ENUM_JS
@@ -68,7 +66,7 @@
 
 #define IOCTL_ENUM_IOCTL(ioctl, value) \
     _IOCTL_ENUM_IOCTL_JS(ioctl, value); \
-    _IOCTL_ENUM_IOCTL_TS(ioctl, value)
+    _IOCTL_ENUM_IOCTL_TS(ioctl, value) \
 
 #define _IOCTL_ENUM_EXPORT_SINGLE(extention) \
     tmp = str_##extention; \
@@ -106,13 +104,15 @@
     _IOCTL_ENUM_EXPORT_JS(); \
     _IOCTL_ENUM_EXPORT_TS(); \
     return 0; \
-} \
+}
 
 #define IOCTL_ENUM(name) \
 int main(void) { \
     std::ofstream out_file; \
-    std::string enum_name = name;\
+    std::string enum_name = name; \
     std::string f_name; \
     std::string tmp; \
     _IOCTL_ENUM_JS(name); \
-    _IOCTL_ENUM_TS(name) \
+    _IOCTL_ENUM_TS(name); \
+
+    
