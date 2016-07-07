@@ -3,12 +3,14 @@
 
 #define _IOCTL_ENUM_DO_NOP() do { } while(0)
 
+#define _IOCTL_ENUM_SINGLE(extention, begin, end) \
+    std::string str_##extention = begin; \
+    str_##extention += enum_name; \
+    str_##extention += end \
+
 #ifdef IOCTL_ENUM_JS
 
-#define _IOCTL_ENUM_JS(name) \
-    std::string str_js = "exports."; \
-    str_js += name; \
-    str_js += " = {\n" \
+#define _IOCTL_ENUM_JS(name) _IOCTL_ENUM_SINGLE(js, "exports.", " = {\n")
 
 #else
 
@@ -18,10 +20,7 @@
 
 #ifdef IOCTL_ENUM_TS
 
-#define _IOCTL_ENUM_TS(name) \
-    std::string str_ts = "export enum "; \
-    str_ts += name; \
-    str_ts += " {\n" \
+#define _IOCTL_ENUM_TS(name)  _IOCTL_ENUM_SINGLE(ts, "export const enum ", "{\n")
 
 #else
 
@@ -29,19 +28,16 @@
 
 #endif
 
+#define _IOCTL_ENUM_IOCTL_SINGLE(extention, ioctl, value, separator) \
+    str_##extention += "\t"; \
+    str_##extention += ioctl; \
+    str_##extention += separator; \
+    str_##extention += std::to_string(value); \
+    str_##extention += ",\n" \
+
 #ifdef IOCTL_ENUM_JS
 
-#define _IOCTL_ENUM_IOCTL_JS(ioctl, value) \
-    str_js += "\t\""; \
-    str_js += ioctl; \
-    str_js += "\": "; \
-    str_js += std::to_string(value); \
-    str_js += ",\n"; \
-    str_js += "\t\""; \
-    str_js += std::to_string(value); \
-    str_js += "\": \""; \
-    str_js += ioctl; \
-    str_js += "\",\n" \
+#define _IOCTL_ENUM_IOCTL_JS(ioctl, value) _IOCTL_ENUM_IOCTL_SINGLE(js, ioctl, value, ": ")
 
 #else
 
@@ -51,12 +47,7 @@
 
 #ifdef IOCTL_ENUM_TS
 
-#define _IOCTL_ENUM_IOCTL_TS(ioctl, value) \
-    str_ts += "\t"; \
-    str_ts += ioctl; \
-    str_ts += " = "; \
-    str_ts += std::to_string(value); \
-    str_ts += ",\n" \
+#define _IOCTL_ENUM_IOCTL_TS(ioctl, value) _IOCTL_ENUM_IOCTL_SINGLE(ts, ioctl, value, " = ")
 
 #else
 
@@ -112,7 +103,6 @@ int main(void) { \
     std::string enum_name = name; \
     std::string f_name; \
     std::string tmp; \
-    _IOCTL_ENUM_JS(name); \
-    _IOCTL_ENUM_TS(name); \
+    _IOCTL_ENUM_JS(); \
+    _IOCTL_ENUM_TS(); \
 
-    
