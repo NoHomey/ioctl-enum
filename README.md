@@ -528,6 +528,14 @@ exec(`g++ -std=c++11 -E ${process.argv[2]}`, {maxBuffer: 100000000000}, (err, ou
 });
 ```
 
+## Q: Why ioctl_enum.h ends with two new lines?
+
+A: Because last charecter in it is '\' and according to C and C++ standart:
+```
+If a source file that is not empty does not end in a new-line character, or ends in a new-line character immediately preceded by a backslash character, the behavior is undefined.
+```
+Also gcc and g++ respectivly both warns about this, so to be able to have fully generated int main this is a requirement.
+
 ## Q: Why are you natively supporting TypeScript ?
 
 A: Well as a kernel hacker and developer who is making JavaScript MVC** IoT interfaces and some Node.js addons I'm using C and C++ alot and having staticly typed code is how big projects are done right. Also I like TypeScript it's the first good thing in Microsoft I see ... But more about me in About me section below.
