@@ -95,7 +95,7 @@
     _IOCTL_ENUM_EXPORT_JS(); \
     _IOCTL_ENUM_EXPORT_TS(); \
     return 0; \
-}
+} \
 
 #define IOCTL_ENUM(name) \
 int main(void) { \
