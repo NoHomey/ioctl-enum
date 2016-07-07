@@ -270,7 +270,24 @@ export enum ARA_TESTER {
 
 # FAQ
 
-## How ioctl-enum works
+## What are the JavaScript to TypeSript compatibilities ?
+
+There are two compatibilities:
+
+### How exported ioctls wrapper is required:
+
+```typescript
+// In TypeScript
+import { SomeName } from './SomeName';
+```
+
+```javascript
+// In JavaScript
+const { SomeName } = require('./SomeName');
+```
+
+
+## How ioctl-enum works ?
 
 Using IOCTL_ENUM, IOCTL_ENUM_IOCTL and IOCTL_ENUM_EXPORT forms a whole C++ program that has it's own int main function wich generates strings as you use the macros and that writes those strings to files.
 
