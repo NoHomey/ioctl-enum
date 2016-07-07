@@ -32,7 +32,7 @@ Define for which language you want to export for: (JavaScript, TypeScript or bot
 #define IOCTL_ENUM_TS
 ```
 
-Name your enum (required for JavaScript compatibility with TypeScript enums, see #FAQ why):
+Give a name to your enum:
 
 ```c++
 IOCTL_ENUM("SomeName");
@@ -147,33 +147,28 @@ g++ -std=c++11 export_ioctl_js.cc
 ```javascript
 // ARA_TESTER.js
 exports.ARA_TESTER = {
-	"ARA_TESTER_PAUSE": 16128,
-	"16128": "ARA_TESTER_PAUSE",
-	"ARA_TESTER_RESUME": 16129,
-	"16129": "ARA_TESTER_RESUME",
-	"ARA_TESTER_SET_DIR": 1074282242,
-	"1074282242": "ARA_TESTER_SET_DIR",
-	"ARA_TESTER_SET_T_MAX": 1074282243,
-	"1074282243": "ARA_TESTER_SET_T_MAX",
-	"ARA_TESTER_SET_T_MIN": 1074282244,
-	"1074282244": "ARA_TESTER_SET_T_MIN",
-	"ARA_TESTER_SET_T_DELTA": 1074282245,
-	"1074282245": "ARA_TESTER_SET_T_DELTA",
-	"ARA_TESTER_SET_LINEAR": 1074282246,
-	"1074282246": "ARA_TESTER_SET_LINEAR",
-	"ARA_TESTER_GET_ACTIVE": 2148024071,
-	"2148024071": "ARA_TESTER_GET_ACTIVE",
-	"ARA_TESTER_GET_PAUSE": 2148024072,
-	"2148024072": "ARA_TESTER_GET_PAUSE",
-	"ARA_TESTER_GET_TOTAL": 2148024073,
-	"2148024073": "ARA_TESTER_GET_TOTAL",
-	"ARA_TESTER_GET_COUNTER": 2148024074,
-	"2148024074": "ARA_TESTER_GET_COUNTER",
-	"ARA_TESTER_GET_MOVMENT_STATE": 2148024075,
-	"2148024075": "ARA_TESTER_GET_MOVMENT_STATE",
-	"ARA_TESTER_EXEC": 2148024076,
-	"2148024076": "ARA_TESTER_EXEC"
+	ARA_TESTER_PAUSE: 16128,
+	ARA_TESTER_RESUME: 16129,
+	ARA_TESTER_SET_DIR: 1074282242,
+	ARA_TESTER_SET_T_MAX: 1074282243,
+	ARA_TESTER_SET_T_MIN: 1074282244,
+	ARA_TESTER_SET_T_DELTA: 1074282245,
+	ARA_TESTER_SET_LINEAR: 1074282246,
+	ARA_TESTER_GET_ACTIVE: 2148024071,
+	ARA_TESTER_GET_PAUSE: 2148024072,
+	ARA_TESTER_GET_TOTAL: 2148024073,
+	ARA_TESTER_GET_COUNTER: 2148024074,
+	ARA_TESTER_GET_MOVMENT_STATE: 2148024075,
+	ARA_TESTER_EXEC: 2148024076
 };
+```
+
+And then require and use the generated object:
+
+```javascript
+// In JavaScript
+const { ARA_TESTER } = require('./ARA_TESTER');
+console.log(ARA_TESTER.ARA_TESTER_EXEC);
 ```
 
 ```c++
@@ -206,7 +201,7 @@ g++ -std=c++11 export_ioctl_ts.cc
 
 ```typescript
 // ARA_TESTER.ts
-export enum ARA_TESTER {
+export const enum ARA_TESTER{
 	ARA_TESTER_PAUSE = 16128,
 	ARA_TESTER_RESUME = 16129,
 	ARA_TESTER_SET_DIR = 1074282242,
@@ -222,6 +217,14 @@ export enum ARA_TESTER {
 	ARA_TESTER_EXEC = 2148024076
 };
 ```
+And then require and use the generated const enum:
+
+```typescript
+// In TypeScript
+import { ARA_TESTER } from './ARA_TESTER';
+console.log(ARA_TESTER.ARA_TESTER_EXEC);
+```
+
 # Warning
 
 Add ioctl_enum's ioctls exporting to your building. Generate the TypeScript enum/ JavaScript object for each machine your project will be running at, ioctl_enum just uses the result of _IO, _IOR, _IOW, _IOWR macros wich is unsigned long C number and it differs at different Unixes, Distributions and versions. Just like you would build the native C++ Addon that wrapps the ioctl numbers on each machine !!!
@@ -269,22 +272,6 @@ export enum ARA_TESTER {
 ```
 
 # FAQ
-
-## What are the JavaScript to TypeSript compatibilities ?
-
-There are two compatibilities:
-
-### How exported ioctls wrapper is required:
-
-```typescript
-// In TypeScript
-import { SomeName } from './SomeName';
-```
-
-```javascript
-// In JavaScript
-const { SomeName } = require('./SomeName');
-```
 
 
 ## How ioctl-enum works ?
