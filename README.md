@@ -10,12 +10,6 @@ Install with npm:
 $ npm install ioctl-enum
 ```
 
-Install with npm as devDependencie:
-
-```bash
-$ npm install ioctl-enum --save-dev
-```
-
 # Usage
 
 Before including the header file:
@@ -24,7 +18,7 @@ Before including the header file:
 #include "node_modules/ioctl-enum/ioctl-enum.h"
 ```
 
-Define for which language you want to export for: (JavaScript, TypeScript or both) (see FAQ why defines must be before including the header):
+Define for which language you want to export for: (JavaScript, TypeScript or both) (see #FAQ why defines must be before including the header):
 
 ## JavaScript
 
@@ -38,7 +32,7 @@ Define for which language you want to export for: (JavaScript, TypeScript or bot
 #define IOCTL_ENUM_TS
 ```
 
-Name your enum (required for JavaScript compatibility with TypeScript enums):
+Name your enum (required for JavaScript compatibility with TypeScript enums, see #FAQ why):
 
 ```c++
 IOCTL_ENUM("SomeName");
@@ -49,7 +43,7 @@ Add ioctl numbers to your enum:
 IOCTL_ENUM("IOCTL_NUMBER", IOCTL_NUMBER);
 ```
 
-Export your enum to language/s you defined with IOCTL_ENUM_*S:
+Export your enum to language/s you defined with IOCTL_ENUM_[J/T]S:
 
 ```c++
 IOCTL_ENUM_EXPORT();
@@ -280,13 +274,9 @@ export enum ARA_TESTER {
 
 Using IOCTL_ENUM, IOCTL_ENUM_IOCTL and IOCTL_ENUM_EXPORT forms a whole C++ program that has it's own int main function wich generates strings as you use the macros and that writes those strings to files.
 
-Under the hood: this is how it would looked like if it was a hand wrtten C++ code for exporting both to JavaScript and TypeScript:
+Under the hood: this is how main function looks like for exporting both to JavaScript and TypeScript:
 
 ```c++
-#include <fstream>
-#include <string>
-#include <ara_tester_ioctl.h>
-
 int main(void) {
     std::ofstream out_file;
     std::string enum_name = "ARA_TESTER";
