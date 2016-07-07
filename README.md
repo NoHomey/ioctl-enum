@@ -530,7 +530,7 @@ exec(`g++ -std=c++11 -E ${process.argv[2]}`, {maxBuffer: 100000000000}, (err, ou
 
 ## Q: Why ioctl_enum.h ends with two new lines?
 
-A: Because last charecter in it is '\' and according to C and C++ standart:
+A: Because last charecter in it is \ and according to C and C++ standart:
 ```
 If a source file that is not empty does not end in a new-line character, or ends in a new-line character immediately preceded by a backslash character, the behavior is undefined.
 ```
@@ -548,7 +548,7 @@ A: I'm Ivo Stratev and I'm 19 years old who just finished hihg school at Technol
 
 There I've learn to code. I'm self taught in kernel programming currenlty only under Linux. I'm doing alot of IoT and for the interfaces I used to use Angular.js but now I'm using React and the new version of Angular (known as Angular 2) also using Node.js (express and Hapi) for middle layer in the communication with the device drivers I make.
 
-I haven't always been staticly typed fan I used to do alot of Ruby, Python and CoffeeScipt but after my last big project which at the end was more than 10K lines of code I realised that static type do pay of so I recommend every JavaScript programmer to use TypeScript (even if I my self hate Microsoft and what they have done ... mainly for IE, any way there are two good things created by them: AJAX and TypeScript).
+I haven't always been staticly typed fan I used to do alot of Ruby, Python and CoffeeScript but after my last big project which at the end was more than 10K lines of code I realised that static type do pay of so I recommend every JavaScript programmer to use TypeScript (even if I my self hate Microsoft and what they have done ... mainly for IE, any way there are two good things created by them: AJAX and TypeScript).
 
 Besides programming (coding) I'm training every day.
 
