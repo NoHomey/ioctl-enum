@@ -18,7 +18,7 @@ Before including the header file:
 #include "node_modules/ioctl-enum/ioctl-enum.h"
 ```
 
-Define for which language you want to export for: (JavaScript, TypeScript or both) (see #FAQ why defines must be before including the header):
+Define for which language you want to export for: (JavaScript, TypeScript or both) (see FAQ why defines must be before including the header):
 
 ## JavaScript
 
@@ -273,237 +273,56 @@ export enum ARA_TESTER {
 
 # FAQ
 
+## Q: Why defines must be before including the header file ?
 
-## How ioctl-enum works ?
-
-Using IOCTL_ENUM, IOCTL_ENUM_IOCTL and IOCTL_ENUM_EXPORT forms a whole C++ program that has it's own int main function wich generates strings as you use the macros and that writes those strings to files.
-
-Under the hood: this is how main function looks like for exporting both to JavaScript and TypeScript:
+A: Because they tell the framework for which language to implement exporting functionality.
+The header file is structured like this:
 
 ```c++
-int main(void) {
-    std::ofstream out_file;
-    std::string enum_name = "ARA_TESTER";
-    std::string f_name;
-    std::string tmp;
-    std::string str_js = "exports.";
-    str_js += "ARA_TESTER";
-    str_js += " = {\n";
-    std::string str_ts = "export enum ";
-    str_ts += "ARA_TESTER";
-    str_ts += " {\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_PAUSE";
-    str_js += "\": ";
-    str_js += std::to_string((((0U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((0)) << 0) | ((0) << ((0 +8)+8))));
-    str_js += ",\n"; str_js += "\t\""; str_js += std::to_string((((0U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((0)) << 0) | ((0) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_PAUSE";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_PAUSE";
-    str_ts += " = ";
-    str_ts += std::to_string((((0U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((0)) << 0) | ((0) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_RESUME";
-    str_js += "\": ";
-    str_js += std::to_string((((0U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((1)) << 0) | ((0) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((0U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((1)) << 0) | ((0) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_RESUME";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_RESUME";
-    str_ts += " = ";
-    str_ts += std::to_string((((0U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((1)) << 0) | ((0) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_SET_DIR";
-    str_js += "\": ";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((2)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((2)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_SET_DIR";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_SET_DIR";
-    str_ts += " = ";
-    str_ts += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((2)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_SET_T_MAX";
-    str_js += "\": ";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((3)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((3)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_SET_T_MAX";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_SET_T_MAX";
-    str_ts += " = ";
-    str_ts += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((3)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8)))); str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_SET_T_MIN";
-    str_js += "\": ";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((4)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((4)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_SET_T_MIN";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_SET_T_MIN";
-    str_ts += " = ";
-    str_ts += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((4)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_SET_T_DELTA";
-    str_js += "\": ";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((5)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((5)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_SET_T_DELTA";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_SET_T_DELTA";
-    str_ts += " = ";
-    str_ts += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((5)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_SET_LINEAR";
-    str_js += "\": ";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((6)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((6)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_SET_LINEAR";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_SET_LINEAR";
-    str_ts += " = ";
-    str_ts += std::to_string((((1U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((6)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_GET_ACTIVE";
-    str_js += "\": ";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((7)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((7)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_GET_ACTIVE";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_GET_ACTIVE";
-    str_ts += " = ";
-    str_ts += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((7)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_GET_PAUSE";
-    str_js += "\": ";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((8)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8)));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((8)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_GET_PAUSE";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_GET_PAUSE";
-    str_ts += " = ";
-    str_ts += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((8)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_GET_TOTAL";
-    str_js += "\": ";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((9)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((9)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8)));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_GET_TOTAL";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_GET_TOTAL";
-    str_ts += " = ";
-    str_ts += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((9)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8)));
-    str_ts += ",\n";
-    str_js += "\t\""; 
-    str_js += "ARA_TESTER_GET_COUNTER";
-    str_js += "\": ";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((10)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((10)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_GET_COUNTER";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_GET_COUNTER";
-    str_ts += " = ";
-    str_ts += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((10)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_GET_MOVMENT_STATE";
-    str_js += "\": ";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((11)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n";
-    str_js += "\t\"";
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((11)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_GET_MOVMENT_STATE";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_GET_MOVMENT_STATE";
-    str_ts += " = ";
-    str_ts += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((11)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    str_js += "\t\"";
-    str_js += "ARA_TESTER_EXEC";
-    str_js += "\": "
-    str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((12)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += ",\n"; str_js += "\t\""; str_js += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((12)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_js += "\": \"";
-    str_js += "ARA_TESTER_EXEC";
-    str_js += "\",\n";
-    str_ts += "\t";
-    str_ts += "ARA_TESTER_EXEC";
-    str_ts += " = ";
-    str_ts += std::to_string((((2U) << (((0 +8)+8)+14)) | ((('?')) << (0 +8)) | (((12)) << 0) | ((((sizeof(unsigned long)))) << ((0 +8)+8))));
-    str_ts += ",\n";
-    tmp = str_js;
-    tmp.pop_back();
-    tmp.pop_back();
-    tmp += "\n};\n";
-    f_name = enum_name;
-    f_name += ".";
-    f_name += "js";
-    out_file.open(f_name.c_str());
-    out_file << tmp;
-    out_file.close();
-    tmp = str_ts;
-    tmp.pop_back();
-    tmp.pop_back();
-    tmp += "\n};\n";
-    f_name = enum_name;
-    f_name += ".";
-    f_name += "ts";
-    out_file.open(f_name.c_str());
-    out_file << tmp;
-    out_file.close();
-    return 0;
-};
+#define IOCTL_ENUM_OPERATION_SINGLE(arg1, arg2) /* ... */
+
+#ifdef IOCTL_ENUM_X
+
+#define _IOCTL_ENUM_OPERATION_X()   _IOCTL_ENUM_OPERATION_SINGLE(arg1, arg2)
+
+#else
+
+IOCTL_ENUM_OPERATION_X()   _IOCTL_ENUM_DO_NOP()
+
+#endif
+
+#define IOCTL_ENUM_OPERATION() \
+	_IOCTL_ENUM_OPERATION_X(); \
+	_IOCTL_ENUM_OPERATION_Y() \
+```
+
+Which is the only way to simulate the language agnostic construction:
+
+```c++
+if(X) {
+/* ... */
+}
+```
+
+Also this way the code is modular it's easy to add more exporting formats for more languages (eg. JSON).
+
+## Q: Why g++ is the only supported compiler ?
+
+A: Alot of gcc and respectively g++ hacks are used in to make the framework as easy to use as possible (eg. operators #, ##) Also gcc is avalible for all unixes and unix is the platform where ioctls are used in first place so there shouldn't be a problem whith g++ beeing required.
+
+## Q: Which versions of g++ are supported ?
+
+A: g++ with version above 4.8 is garanted to work since it's C++11 future complate.
+Earlier versions may work as well infact any version that supports std::to_string will work.
+
+## Q: How ioctl-enum works ?
+
+A: Using IOCTL_ENUM, IOCTL_ENUM_IOCTL and IOCTL_ENUM_EXPORT forms a whole C++ program that has it's own int main function wich generates strings as you use IOCTL_ENUM and IOCTL_ENUM_IOCTL and than writes those strings to files when you call IOCTL_ENUM_EXPORT.
+
+Under the hood: this is how main function looks like for the first example where ioctl numbers are exported to JavaScript:
+
+```c++
+
 ```
 
 
