@@ -329,7 +329,7 @@ A: Alot of gcc and respectively g++ hacks are used in to make the framework as e
 
 ## Q: Which versions of g++ are supported ?
 
-A: g++ with version above 4.8 is garanted to work since it's C++11 future complate.
+A: g++ with version above 4.8 is garanted to work since it's C++11 future complete.
 Earlier versions may work as well infact any version that supports std::to_string will work.
 
 ## Q: How ioctl-enum works ?
