@@ -121,7 +121,7 @@ static void on_exit(void);
 ```c++
 // export_ioctl_js.cc
 #define IOCTL_ENUM_JS
-#include "ioctl-enum.h"
+#include "node_modules/ioctl-enum/ioctl-enum.h"
 #include <ara_tester_ioctl.h>
 
 IOCTL_ENUM("ARA_TESTER");
@@ -178,7 +178,7 @@ console.log(ARA_TESTER.ARA_TESTER_EXEC);
 ```c++
 // export_ioctl_ts.cc
 #define IOCTL_ENUM_TS
-#include "ioctl-enum.h"
+#include "node_modules/ioctl-enum/ioctl-enum.h"
 #include <ara_tester_ioctl.h>
 
 IOCTL_ENUM("ARA_TESTER");
