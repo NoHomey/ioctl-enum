@@ -507,24 +507,25 @@ int main(void) {
 You can check for fun yours with the following Node.js code:
 
 ```javascript
-// get_main.js
-// node get_main.js export_ioctl_both.cc
+// get_main.js 
+// node get_main.js export_ioctl_both.cc 
 var fs = require('fs');
 var { exec } = require('child_process');
-exec(`g++ -std=c++11 -E ${process.argv[2]}`, {maxBuffer: 100000000000}, (err, out) => {
+var program = process.argv[2];
+exec(`g++ -std=c++11 -E ${program}`, {maxBuffer: 100000000000}, (err, out) => {
     if (err) {
         console.error(err);
     } else {
+        var remove = '\n\# [0-9]+ \"' + program + '\"( [0-9]+ [0-9]+)?\n';
         out = out.substr(out.indexOf("int main"), out.length);
-        out = out.replace(/\n\# \d+ \"gen.c\"( 3 4)?\n/g, '');
+        out = out.replace(new RegExp(remove, 'g'), '');
         out = out.replace(/; /g, ';\n');
         out = out.replace(/ std::ofstream/g, '\nstd::ofstream');
-        for(var c of 'stfor') {
+        for(var c of 'stdfor') {
             out = out.replace(new RegExp('\n' + c, 'g'), '\n\t' + c);
         }
         console.log(out);
     }
-
 });
 ```
 
