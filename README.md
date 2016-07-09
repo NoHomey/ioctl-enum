@@ -69,7 +69,7 @@ This will generate SomeName.[j/t]s file/s depending on the language of your choi
 
 # Example
 
-## JavaScript:
+Consider the following abient kernel device driver header:
 
 ```c
 // ara_tester_ioctl.h
@@ -126,6 +126,8 @@ static void on_exit(void);
 
 #endif
 ```
+
+## JavaScript:
 
 ```c++
 // export_ioctl_js.cc
