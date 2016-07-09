@@ -20,7 +20,7 @@
 
 #ifdef IOCTL_ENUM_TS
 
-#define _IOCTL_ENUM_TS(name)  _IOCTL_ENUM_SINGLE(ts, "export const enum ", "{\n")
+#define _IOCTL_ENUM_TS(name)  _IOCTL_ENUM_SINGLE(ts, "export const enum ", " {\n")
 
 #else
 
