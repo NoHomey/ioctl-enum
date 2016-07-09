@@ -1,6 +1,6 @@
 {
   "name": "ioctl-enum",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "C++ macro oriented framework in single header file for easier export of ioctl numbers to JavaScript and TypeScript. Removes the need of building native C++ Node.js Addons",
   "main": "ioctl-enum.h",
   "scripts": {
