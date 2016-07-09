@@ -249,6 +249,8 @@ Just add both defines before any including:
 #define IOCTL_ENUM_TS
 ```
 
+## For full working example code visit: (https://github.com/NoHomey/nodejs-ioctl-example)
+
 # Warning
 
 Add ioctl_enum's ioctls exporting to your building. Generate the TypeScript enum/ JavaScript object for each machine your project will be running at, ioctl_enum just uses the result of _IO, _IOR, _IOW, _IOWR macros wich is unsigned long C number and it differs at different Unixes, Distributions and versions. Just like you would build the native C++ Addon that wrapps the ioctl numbers on each machine !!!
