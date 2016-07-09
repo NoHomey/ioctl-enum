@@ -31,17 +31,26 @@ Define for which language you want to export for: (JavaScript, TypeScript or bot
 ```c++
 #define IOCTL_ENUM_TS
 ```
+## API
+
+### IOCTL_ENUM(name), name \<String\>
 
 Give a name to your enum:
 
 ```c++
 IOCTL_ENUM("SomeName");
+
 ```
+
+### IOCTL_ENUM_IOCTL(ioctl_key, ioctl_value), ioctl_key \<String\>, ioctl_value \<unsigned long\> (_IO, _IOR, _IOW, _IOWR)
+
 Add ioctl numbers to your enum:
 
 ```c++
 IOCTL_ENUM("IOCTL_NUMBER", IOCTL_NUMBER);
 ```
+
+### IOCTL_ENUM_EXPORT()
 
 Export your enum to language/s you defined with IOCTL_ENUM_[J/T]S:
 
@@ -205,7 +214,7 @@ g++ -std=c++11 export_ioctl_ts.cc
 
 ```typescript
 // ARA_TESTER.ts
-export const enum ARA_TESTER{
+export const enum ARA_TESTER {
 	ARA_TESTER_PAUSE = 16128,
 	ARA_TESTER_RESUME = 16129,
 	ARA_TESTER_SET_DIR = 1074282242,
@@ -247,7 +256,7 @@ Example:
 ```typescript
 // Ran on my laptop (Ubuntu 16.04)
 // ARA_TESTER.ts
-export enum ARA_TESTER {
+export const enum ARA_TESTER {
 	ARA_TESTER_PAUSE = 16128,
 	ARA_TESTER_RESUME = 16129,
 	ARA_TESTER_SET_DIR = 1074282242,
@@ -267,7 +276,7 @@ export enum ARA_TESTER {
 ```typescript
 // Ran on my Raspberry Pi 2 B+ (Raspbian May 2016 2016-05-27 4.4.1.17)
 // ARA_TESTER.ts
-export enum ARA_TESTER {
+export const enum ARA_TESTER {
 	ARA_TESTER_PAUSE = 16128,
 	ARA_TESTER_RESUME = 16129,
 	ARA_TESTER_SET_DIR = 1074020098,
@@ -545,13 +554,11 @@ A: Well as a kernel hacker and developer who is making JavaScript MVC** IoT inte
 
 ## Q: Who I'm ?
 
-A: I'm Ivo Stratev and I'm 19 years old who just finished hihg school at Technological school "Electronic Systems" at the Technical University - Sofia with 5.85 of possible 6.00.
+A: I'm Ivo Stratev and I'm 19 years old who just finished high school at Technological school "Electronic Systems" at the Technical University - Sofia with 5.85 of possible 6.00.
 
 There I've learn to code. I'm self taught in kernel programming currenlty only under Linux. I'm doing alot of IoT and for the interfaces I used to use Angular.js but now I'm using React and the new version of Angular (known as Angular 2) also using Node.js (express and Hapi) for middle layer in the communication with the device drivers I make.
 
-I haven't always been staticly typed fan I used to do alot of Ruby, Python and CoffeeScript but after my last big project which at the end was more than 10K lines of code I realised that static type do pay of so I recommend every JavaScript programmer to use TypeScript (even if I my self hate Microsoft and what they have done ... mainly for IE, any way there are two good things created by them: AJAX and TypeScript).
-
-Besides programming (coding) I'm training every day.
+I haven't always been staticly typed fan I used to do alot of Ruby, Python and CoffeeScript but after my last big project which was all in Coffee and in the end was more than 10K lines of code I realised that static type do pay of so I recommend every JavaScript programmer to use TypeScript (even that I my self hate Microsoft (less nowadays) and what they have done ... mainly for IE Well there are there good things created by them: AJAX, TypeScript and VSCode).
 
 
 
