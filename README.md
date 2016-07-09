@@ -345,7 +345,7 @@ Earlier versions may work as well infact any version that supports std::to_strin
 
 ## Q: How ioctl-enum works ?
 
-A: Using IOCTL_ENUM, IOCTL_ENUM_IOCTL and IOCTL_ENUM_EXPORT forms a whole C++ program that has it's own int main function wich generates strings as you use IOCTL_ENUM and IOCTL_ENUM_IOCTL and than writes those strings to files when you call IOCTL_ENUM_EXPORT.
+A: Using IOCTL_ENUM, IOCTL_ENUM_IOCTL and IOCTL_ENUM_EXPORT forms a whole C++ program that has it's own int main function wich generates strings as you use IOCTL_ENUM and IOCTL_ENUM_IOCTL and than writes these strings to files when you call IOCTL_ENUM_EXPORT.
 
 Under the hood: this is how int main function would looked like if ioctl numbers from exaple were exported both to JavaScript and TypeScript:
 
