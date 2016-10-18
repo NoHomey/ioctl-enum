@@ -2,6 +2,9 @@
 
 C++ macro oriented framework in single header file for easier export of ioctl numbers to JavaScript and TypeScript. Removes the need of building native C++ Node.js Addons
 
+[![npm version](https://badge.fury.io/js/ioctl-enum.svg)](https://badge.fury.io/js/ioctl-enum)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/NoHomey/ioctl-enum)
+
 # Installation
 
 Install with npm:
@@ -9,6 +12,8 @@ Install with npm:
 ```bash
 $ npm install ioctl-enum
 ```
+
+[![NPM](https://nodei.co/npm/ioctl-enum.png?downloads=true&stars=true)](https://nodei.co/npm/ioctl-enum/)
 
 # Usage
 
@@ -253,9 +258,9 @@ Just add both defines before any including:
 
 # Warning
 
-Add ioctl_enum's ioctls exporting to your building. Generate the TypeScript enum/ JavaScript object for each machine your project will be running at, ioctl_enum just uses the result of _IO, _IOR, _IOW, _IOWR macros wich is unsigned long C number and it differs at different Unixes, Distributions and versions. Just like you would build the native C++ Addon that wrapps the ioctl numbers on each machine !!!
+Add ioctl-enum's ioctls exporting to your building. Generate the TypeScript enum/ JavaScript object for each machine your project will be running at, ioctl-enum just uses the result of _IO, _IOR, _IOW, _IOWR macros wich is unsigned long C number and it differs at different Unixes, Distributions and versions. Just like you would build the native C++ Addon that wrapps the ioctl numbers on each machine !!!
 
-Example:
+This is why:
 
 ```typescript
 // Ran on my laptop (Ubuntu 16.04)
@@ -299,7 +304,7 @@ export const enum ARA_TESTER {
 
 # FAQ
 
-## Why using ioctl_enum instead of writing C++ addon ?
+## Why using ioctl-enum instead of writing C++ addon ?
 
 A: Well beacuse just for exporting N ioctl numbers to Node.js you will write alot of code for just creating a JavaScript Object why not let ioctl-enum do it for you ?  Also exporting with ioctl-enum is going to cost you N + 4 lines of code just to export you ioctls so you can controll your device driver from Node.js.
 
@@ -549,21 +554,3 @@ A: Because last charecter in it is \ and according to C and C++ standart:
 If a source file that is not empty does not end in a new-line character, or ends in a new-line character immediately preceded by a backslash character, the behavior is undefined.
 ```
 Also gcc and g++ respectivly both warns about this, so to be able to have fully generated int main this is a requirement.
-
-## Q: Why are you natively supporting TypeScript ?
-
-A: Well as a kernel hacker and developer who is making JavaScript MVC** IoT interfaces and some Node.js addons I'm using C and C++ alot and having staticly typed code is how big projects are done right. Also I like TypeScript it's the first good thing in Microsoft I see ... But more about me in About me section below.
-
-# About me
-
-## Q: Who I'm ?
-
-A: I'm Ivo Stratev and I'm 19 years old who just finished high school at Technological school "Electronic Systems" at the Technical University - Sofia with 5.85 of possible 6.00.
-
-There I've learn to code. I'm self taught in kernel programming currenlty only under Linux. I'm doing alot of IoT and for the interfaces I used to use Angular.js but now I'm using React and the new version of Angular (known as Angular 2) also using Node.js (express and Hapi) for middle layer in the communication with the device drivers I make.
-
-I haven't always been staticly typed fan I used to do alot of Ruby, Python and CoffeeScript but after my last big project which was all in Coffee and in the end was more than 10K lines of code I realised that static type do pay of so I recommend every JavaScript programmer to use TypeScript (even that I my self hate Microsoft (less nowadays) and what they have done ... mainly for IE Well there are there good things created by them: AJAX, TypeScript and VSCode).
-
-
-
-
