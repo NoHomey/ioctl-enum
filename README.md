@@ -13,8 +13,6 @@ Install with npm:
 $ npm install ioctl-enum
 ```
 
-[![NPM](https://nodei.co/npm/ioctl-enum.png?downloads=true&stars=true)](https://nodei.co/npm/ioctl-enum/)
-
 # Usage
 
 Before including the header file:
